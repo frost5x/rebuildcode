@@ -13,18 +13,12 @@ int main(int argc,char *argv[])
 	Directory1 = "C:\\Users\\John\\Desktop\\Array.txt";
 	Directory2 = "C:\\Users\\John\\Desktop\\Matrix.txt";
 
-<<<<<<< HEAD
 	//************动态数组（二维）***********//lll
 	double *x,*b,*r,*r_new,*p,*ArrayTemp;
 	double **Matrix;
 	double error,error0 = 1.0e-6;
 	double alpha, beta;
 	int n = 20;
-=======
-	//************动态数组（二维）***********//
-	double **Matrix;
-	int m = 20,n = 20;
->>>>>>> 7d9182299b06fbf29686e295562de7f29ea897bf
 	int Bandwidth = 5;
 
 	Matrix = (double**)malloc(n*sizeof(double*));
@@ -32,7 +26,6 @@ int main(int argc,char *argv[])
 	{
 		*(Matrix+i) = (double*)malloc(n*sizeof(double));
 	}
-<<<<<<< HEAD
     
 	x = (double*)malloc(n*sizeof(double));
 	b = (double*)malloc(n*sizeof(double));
@@ -88,26 +81,6 @@ int main(int argc,char *argv[])
 	
 	
 	//MATRIX MULTIPLY  Ax=b 矩阵乘法c
-=======
-    double *x,*b;
-	x = (double*)malloc(n*sizeof(double));
-	b = (double*)malloc(m*sizeof(double));
-	
-	InitializeArray(x,n,1.0);
-	InitializeArray(b,m,0);
-	InitializeMatrix(Matrix,m,n,0.0);
-	
-	MatrixMultiply(Matrix,x,b,m,n);	
-	MatrixDefinition(Matrix,m,Bandwidth);
-	
-	
-    PrintArray(x,Directory1,'x',n)
-	PrintArray(b,Directory1,'b',m)
-	PrintMatrix(Matrix,Directory2,"A",m,n);
-	
-	
-	//MATRIX MULTIPLY  Ax=b 矩阵乘法
->>>>>>> 7d9182299b06fbf29686e295562de7f29ea897bf
 	
 	
 	
