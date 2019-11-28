@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<math.h>
+#include <math.h>
 #include "Initialization.h"
 #include "PrintToFile.h"
 #include "MatrixOperation.h"
@@ -17,7 +17,7 @@ int main(int argc,char *argv[])
 	double *x,*b,*r,*r_new,*p,*ArrayTemp;
 	double **Matrix;
 	double error,error0 = 1.0e-6;
-	double alpha, beta;
+	double alpha,beta;
 	int n = 20;
 	int Bandwidth = 5;
 
@@ -26,24 +26,24 @@ int main(int argc,char *argv[])
 	{
 		*(Matrix+i) = (double*)malloc(n*sizeof(double));
 	}
-    
+
 	x = (double*)malloc(n*sizeof(double));
 	b = (double*)malloc(n*sizeof(double));
 	r = (double*)malloc(n*sizeof(double));
 	r_new = (double*)malloc(n*sizeof(double));
 	p = (double*)malloc(n*sizeof(double));
 	ArrayTemp = (double*)malloc(n*sizeof(double));
-	
+
+	InitializeMatrix(Matrix,n,n,0.0);
 	InitializeArray(x,n,0.0);
 	InitializeArray(b,n,1.0);
-	InitializeMatrix(Matrix,n,n,0.0);
 	MatrixDefinition(Matrix,n,Bandwidth);
-	
-	//Conjugate Gradient
+
+	//Conjugate Gradient//
 	//Initialization//
 	InitializeArray(x,n,0.0);
 	MatrixMultiply(Matrix,x,ArrayTemp,n,n);
-	for((i=0;i<n;i++)
+	for(i=0;i<n;i++)
 	{
 		r[i] = b[i] - ArrayTemp[i];
 		p[i] = r[i];
@@ -55,45 +55,30 @@ int main(int argc,char *argv[])
 	{
 		MatrixMultiply(Matrix,p,ArrayTemp,n,n);
 		alpha = Dotproduct(r,r,n)/Dotproduct(p,ArrayTemp,n);
-		for(i=0;i<n,i++)
+		for(i=0;i<n;i++)
 		{
-			x[i] +=alpha*p[i];
-			r_new[i] = r[i]-alpha*ArrayTemp[i];
+			x[i] += alpha*p[i];
+			r_new[i] = r[i] - alpha*ArrayTemp[i];
 		}
 		error = sqrt(Dotproduct(r_new,r_new,n));
-		printf("Iteration number = %d,error = %12E\n",k,error);
+		printf("Iteration number = %d, error = %12E\n",k,error);
 		beta = Dotproduct(r_new,r_new,n)/Dotproduct(r,r,n);
-		for(i = 0;i<n;i++)
+		for(i=0;i<n;i++)
 		{
-			p[i] = r_new+beta*p[i];
+			p[i] = r_new[i] + beta*p[i];
 			r[i] = r_new[i];
 		}
 		k++;
 	}
-	printf("\n");	
-	PrintArray(x,Directory1,'x',n);
+	printf("\n");
+	PrintArray(x,Directory1,"x",n);
 	system("pause");
 	
+
 	
- 
-	PrintArray(b,Directory1,'b',n)
+	
+	PrintArray(b,Directory1,"b",n);
 	PrintMatrix(Matrix,Directory2,"A",n,n);
-	
-	
-	//MATRIX MULTIPLY  Ax=b 矩阵乘法c
-	
-	
-	
-	
-	
-	
-	//矩阵乘法结束
-	
-	
-	
-
-	system("pause");
-
 	//************基本变量***********//
 	//声明//
 	//char *aaa = "hahahaha";
