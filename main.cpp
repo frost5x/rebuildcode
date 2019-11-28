@@ -13,7 +13,7 @@ int main(int argc,char *argv[])
 	Directory1 = "C:\\Users\\John\\Desktop\\Array.txt";
 	Directory2 = "C:\\Users\\John\\Desktop\\Matrix.txt";
 
-	//************动态数组（二维）***********//lll
+	//************动态数组（二维）***********//
 	double *x,*b,*r,*r_new,*p,*ArrayTemp;
 	double **Matrix;
 	double error,error0 = 1.0e-6;
